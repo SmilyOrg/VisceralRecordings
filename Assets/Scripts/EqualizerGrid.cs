@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BoxGrid : MonoBehaviour {
-
+public class EqualizerGrid : MonoBehaviour
+{
     public AudioSource mainTrack;
 
     public int xSize = 10;
@@ -29,7 +28,7 @@ public class BoxGrid : MonoBehaviour {
 
     private void Update()
     {
-        if(_initComplete)
+        if (_initComplete)
             SampleTimer();
     }
 
@@ -40,7 +39,7 @@ public class BoxGrid : MonoBehaviour {
         if (_curTime > durationToSample)
         {
             ApplyAudioSourceFrequency();
-             _curTime = 0f;
+            _curTime = 0f;
         }
     }
 
