@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+  - enabled: 0
+    path: Assets/Scenes/samplescene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 0
+    path: Assets/ResonanceAudio/Demos/Scenes/ResonanceAudioDemo.unity
+    guid: 8a87eab7a9f7d42468d0c9cf1ba30cf4
+  - enabled: 1
+    path: Assets/Scenes/scn_audioscape_01.unity
+    guid: 80836378a1b3db947a2b99bfa650f58f
+  - enabled: 0
+    path: Assets/Photon Unity Networking/Demos/DemoBoxes/DemoBoxes-Scene.unity
+    guid: 484b70123468e8d47b39976c6516756b
   m_configObjects: {}
