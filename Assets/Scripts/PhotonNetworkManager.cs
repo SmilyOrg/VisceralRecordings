@@ -10,7 +10,7 @@ public class PhotonNetworkManager : Photon.PunBehaviour
     {
         PhotonNetwork.autoJoinLobby = false;
         PhotonNetwork.sendRate = 15;
-        PhotonNetwork.ConnectUsingSettings("1");
+        PhotonNetwork.ConnectUsingSettings("2");
     }
 
     /// Start the connection process.
@@ -31,13 +31,13 @@ public class PhotonNetworkManager : Photon.PunBehaviour
 
     public override void OnConnectedToMaster()
     {
-        Debug.LogError("OnConnectedToMaster");
+        Debug.Log("OnConnectedToMaster");
         PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedLobby()
     {
-        Debug.LogError("OnJoinedLobby");
+        Debug.Log("OnJoinedLobby");
         // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnPhotonRandomJoinFailed() and we'll create one.
         var options = new RoomOptions();
         var lobby = new TypedLobby();
@@ -46,13 +46,13 @@ public class PhotonNetworkManager : Photon.PunBehaviour
 
     public override void OnJoinedRoom()
     {
-        Debug.LogError("OnJoinedRoom");
+        Debug.Log("OnJoinedRoom");
         PhotonNetwork.Instantiate("Player Sync", Vector3.zero, Quaternion.identity, 0);
     }
     
     // Gets called when another player joins the game
     public override void OnPhotonPlayerConnected(PhotonPlayer other) {
-        Debug.LogError("OnPhotonPlayerConnected ");
-        PhotonNetwork.Instantiate("Player Sync", Vector3.zero, Quaternion.identity, 0);
+        Debug.Log("OnPhotonPlayerConnected");
+        // PhotonNetwork.Instantiate("Player Sync", Vector3.zero, Quaternion.identity, 0);
     }
 }
