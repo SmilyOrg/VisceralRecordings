@@ -12,14 +12,14 @@ public class EqualizerGrid : MonoBehaviour
     public GameObject gridObject;
 
     public float durationToSample = 0.25f;
-    public float punchIntensity = 5f;
-    public float overallScale = 5f;
+    public float punchIntensity = 25f;
+    public float overallScale = 3f;
 
-    [HideInInspector]
     public GameObject[] createdObjects;
 
     private bool _initComplete;
     private float _curTime;
+    private Quaternion _initRotation;
 
     private void Start()
     {
@@ -45,7 +45,14 @@ public class EqualizerGrid : MonoBehaviour
 
     void Init()
     {
+        _initRotation = transform.rotation;
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+
         CreateGrid(xSize, zSize);
+
+        transform.rotation = _initRotation;
+        transform.localScale *= overallScale;
+
         _initComplete = true;
     }
 
@@ -59,13 +66,15 @@ public class EqualizerGrid : MonoBehaviour
             {
                 var pos = new Vector3(i, 0f, j);
                 var go = Instantiate(gridObject, pos + transform.position, Quaternion.identity) as GameObject;
+
+                go.SetActive(true);
                 go.transform.SetParent(transform);
+
                 createdObjs.Add(go);
             }
         }
 
         createdObjects = createdObjs.ToArray();
-        transform.localScale *= overallScale;
     }
 
     private float[] _spectrum = new float[64];
