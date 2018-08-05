@@ -33,8 +33,9 @@ public class ControllerInput : MonoBehaviour {
 		InteractableItem interactable = collider.GetComponent<InteractableItem>();
 		if (interactable != null)
 		{
+			Debug.Log("interac " + interactable + " " + Input.GetAxis(TriggerAxis));
 			//If trigger button is down
-			if (Input.GetAxis(TriggerAxis) == 1f)
+			if (Input.GetAxis(TriggerAxis) > 0.9f)
 			{
 				//Pick up object
 				interactable.Pickup(this);

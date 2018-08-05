@@ -15,11 +15,11 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 
     void Start ()
     {
-        Debug.LogError("Player instantiated");
+        Debug.Log("Player instantiated");
 
         if (photonView.isMine)
         {
-            Debug.LogError("Player is mine");
+            Debug.Log("Player is mine");
 
             playerGlobal = GameObject.Find("Camera Floor Offset").transform;
             playerHead = playerGlobal.Find("Main Camera");
@@ -43,9 +43,18 @@ public class NetworkedPlayer : Photon.MonoBehaviour
 	
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (!playerGlobal) return;
+        // if (!playerGlobal)
+        // {
+        //     Debug.LogWarning("No player global, ignoring");
+        //     return;
+        // }
         if (stream.isWriting)
         {
+            if (!playerGlobal)
+            {
+                Debug.LogWarning("No player global, ignoring");
+                return;
+            }
             stream.SendNext(playerGlobal.position);
             stream.SendNext(playerGlobal.rotation);
             stream.SendNext(playerHead.localPosition);
@@ -61,10 +70,10 @@ public class NetworkedPlayer : Photon.MonoBehaviour
             this.transform.rotation = (Quaternion)stream.ReceiveNext();
             head.transform.localPosition = (Vector3)stream.ReceiveNext();
             head.transform.localRotation = (Quaternion)stream.ReceiveNext();
-            playerLeftHand.transform.localPosition = (Vector3)stream.ReceiveNext();
-            playerLeftHand.transform.localRotation = (Quaternion)stream.ReceiveNext();
-            playerRightHand.transform.localPosition = (Vector3)stream.ReceiveNext();
-            playerRightHand.transform.localRotation = (Quaternion)stream.ReceiveNext();
+            leftHand.transform.localPosition = (Vector3)stream.ReceiveNext();
+            leftHand.transform.localRotation = (Quaternion)stream.ReceiveNext();
+            rightHand.transform.localPosition = (Vector3)stream.ReceiveNext();
+            rightHand.transform.localRotation = (Quaternion)stream.ReceiveNext();
         }
     }
 }
